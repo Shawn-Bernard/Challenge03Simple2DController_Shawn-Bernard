@@ -5,13 +5,13 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using System;
 
-public class InputManager : MonoBehaviour, PlayerController.IPlayerActions
+public class InputManager : MonoBehaviour, PlayerInput.IPlayerActions
 {
-    PlayerController PlayerInput;
+    PlayerInput PlayerInput;
     private void Awake()
     {
         //Making a new instance of gameinput
-        PlayerInput = new PlayerController();
+        PlayerInput = new PlayerInput();
         //Enable my new instance of gameinput
         PlayerInput.Player.Enable();
 
@@ -30,11 +30,16 @@ public class InputManager : MonoBehaviour, PlayerController.IPlayerActions
     }
     public void OnMove(InputAction.CallbackContext context)
     {
-
+        if (context.performed)
+        {
+            Debug.Log($"Move input: {context.ReadValue<Vector2>()}");
+            PlayerInputActions.MoveEvent.Invoke(context.ReadValue<Vector2>);
+        }
+        
     }
     
 }
-public static class InputActions
+public static class PlayerInputActions
 {
     public static Action<Vector2> MoveEvent;
 }
