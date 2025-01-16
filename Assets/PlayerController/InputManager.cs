@@ -30,16 +30,17 @@ public class InputManager : MonoBehaviour, PlayerInput.IPlayerActions
     }
     public void OnMove(InputAction.CallbackContext context)
     {
-        if (context.performed)
-        {
-            Debug.Log($"Move input: {context.ReadValue<Vector2>()}");
-            PlayerInputActions.MoveEvent.Invoke(context.ReadValue<Vector2>);
-        }
+        PlayerInputActions.MoveEvent.Invoke(context.ReadValue<Vector2>());
+    }
+
+    public void OnInteract(InputAction.CallbackContext context)
+    {
         
     }
-    
 }
 public static class PlayerInputActions
 {
     public static Action<Vector2> MoveEvent;
+
+    public static Action InteractEvent;
 }
