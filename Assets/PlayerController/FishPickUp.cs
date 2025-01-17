@@ -37,6 +37,7 @@ public class FishPickUp : MonoBehaviour
     }
     void DropItem()
     {
+        //Updaing my text when item drops
         FishText.text = "Well now the fish is dirty";
         //Moving my fish to the player position
         gameObject.transform.position = player.transform.position;
@@ -45,6 +46,7 @@ public class FishPickUp : MonoBehaviour
     }
     void HoldItem()
     {
+        //Updaing my text when item is picked up
         FishText.text = "Keep a hold on that fish";
         //Hiding my fish from the player 
         gameObject.SetActive(false);
