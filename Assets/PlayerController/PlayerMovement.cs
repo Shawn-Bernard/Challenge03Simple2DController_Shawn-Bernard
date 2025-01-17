@@ -1,13 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 public class PlayerMovement : MonoBehaviour
 {
     CharacterController playerInput;
 
-    public GameObject fish;
+    public static GameObject HeldItem;
     //My player 
     Vector2 playerVector; 
     //Speed so we can go fast
@@ -41,24 +40,6 @@ public class PlayerMovement : MonoBehaviour
     {
         //Making my moveVector equal to Movement 
         playerVector = inputMovement;
-    }
-    private void Fish()
-    {
-        fish.SetActive(false);
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (gameObject.CompareTag("Fish"))
-        {
-            PlayerInputActions.InteractEvent += Fish;
-        }
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (gameObject.CompareTag("Fish"))
-        {
-            PlayerInputActions.InteractEvent -= Fish;
-        }
     }
     private void OnDisable()
     {
