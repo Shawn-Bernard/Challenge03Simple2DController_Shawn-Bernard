@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    CharacterController playerInput;
+    Rigidbody2D playerRigidbody;
 
-    public static GameObject HeldItem;
+
+    private Vector2 velocity;
     //My player 
     Vector2 playerVector; 
     //Speed so we can go fast
-    float Speed = 2.0f;
+    public float Speed = 2.0f;
     private void Awake()
     {
         //Getting my component and putting it in playerInput
-        playerInput = GetComponent<CharacterController>();
+        playerRigidbody = GetComponent<Rigidbody2D>();
 
         //adding my update move vector mwthod to my MoveEvent action
         PlayerInputActions.MoveEvent += UpdateMoveVector;
@@ -22,19 +23,20 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        velocity = new Vector2(1.75f, 1.1f);
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
+        
         //Updating my movement with my moveVector
-        Movement(playerVector);
+        Movement();
     }
-    void Movement(Vector2 inputMovement)
+    void Movement()
     {
         //Making my player vector motion my Movement vector 
-        playerInput.Move(Speed * Time.deltaTime * inputMovement);
+        playerRigidbody.MovePosition(playerRigidbody.position + playerVector  * Time.fixedDeltaTime * Speed);
     }
     void UpdateMoveVector(Vector2 inputMovement)
     {
