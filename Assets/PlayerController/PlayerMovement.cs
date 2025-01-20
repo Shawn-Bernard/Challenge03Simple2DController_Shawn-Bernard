@@ -6,8 +6,6 @@ public class PlayerMovement : MonoBehaviour
 {
     Rigidbody2D playerRigidbody;
 
-
-    private Vector2 velocity;
     //My player 
     Vector2 playerVector; 
     //Speed so we can go fast
@@ -23,7 +21,6 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        velocity = new Vector2(1.75f, 1.1f);
     }
 
     // Update is called once per frame
@@ -35,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void Movement()
     {
-        //Making my player vector motion my Movement vector 
+        //Moving my rigidbody2d player position getting my rigidbody position and adding my player vector 
         playerRigidbody.MovePosition(playerRigidbody.position + playerVector  * Time.fixedDeltaTime * Speed);
     }
     void UpdateMoveVector(Vector2 inputMovement)
